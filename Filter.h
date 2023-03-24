@@ -44,6 +44,7 @@ class Filter {
   void BoxBlur();
   void Prewitt();
   void Laplas();
+  void Custom(const std::vector<std::vector<float>> &kernel);
 
   void SetOriginalImg(const QImage &original_img);
   void SetFilteredImg(const QImage &filtered_img);

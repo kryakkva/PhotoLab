@@ -16,13 +16,19 @@ namespace s21 {
   public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
+    const std::vector<std::vector<float>> &GetKernel() const;
 
   private slots:
-    void on_matrix_spinBox_valueChanged(int arg1);
+    void on_matrix_spinBox_w_valueChanged(int arg1);
+    void on_matrix_spinBox_h_valueChanged(int arg1);
+
+    void on_buttonBox_accepted();
 
   private:
     Ui::Dialog *ui;
+    std::vector<std::vector<float>> kernel;
     void ChangeSize(int col, int row);
+
   };
 
 

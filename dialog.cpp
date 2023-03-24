@@ -28,22 +28,14 @@ namespace s21 {
   }
 
 
-void Dialog::on_matrix_spinBox_valueChanged(int arg1)
-{
-    // ui->matrixWidget->setColumnCount(arg1);
-    // ui->matrixWidget->setRowCount(arg1);
-    // ui->matrixWidget->setColumnWidth(2, 20);
-  ChangeSize(arg1, arg1);
-}
-
 void Dialog::ChangeSize(int col, int row) {
-    // qInfo() << ui->matrixWidget->cellWidget(0, 0);
-    // qInfo() << qobject_cast<QDoubleSpinBox *>(ui->matrixWidget->cellWidget(0, 0));
-    // qInfo() << qobject_cast<QDoubleSpinBox *>(ui->matrixWidget->cellWidget(0, 0))->value();
-    ui->matrixWidget->clear();
-    // qInfo() << qobject_cast<QDoubleSpinBox *>(ui->matrixWidget->cellWidget(0, 0))->value();
-    ui->matrixWidget->setRowCount(row);
-    ui->matrixWidget->setColumnCount(col);
+  // qInfo() << ui->matrixWidget->cellWidget(0, 0);
+  // qInfo() << qobject_cast<QDoubleSpinBox *>(ui->matrixWidget->cellWidget(0, 0));
+  // qInfo() << qobject_cast<QDoubleSpinBox *>(ui->matrixWidget->cellWidget(0, 0))->value();
+  ui->matrixWidget->clear();
+  // qInfo() << qobject_cast<QDoubleSpinBox *>(ui->matrixWidget->cellWidget(0, 0))->value();
+  ui->matrixWidget->setRowCount(row);
+  ui->matrixWidget->setColumnCount(col);
 
   for (auto r = 0; r < row; ++r) {
     for (auto c = 0; c < col; ++c) {
@@ -55,6 +47,37 @@ void Dialog::ChangeSize(int col, int row) {
     }
     ui->matrixWidget->setRowHeight(r, ui->matrixWidget->height() / row);
   }
+}
+
+void Dialog::on_matrix_spinBox_w_valueChanged(int arg1)
+{
+  ChangeSize(arg1, ui->matrix_spinBox_h->value());
+}
+
+
+void Dialog::on_matrix_spinBox_h_valueChanged(int arg1)
+{
+  ChangeSize(ui->matrix_spinBox_w->value(), arg1);
+}
+
+const std::vector<std::vector<float>> &Dialog::GetKernel() const { return kernel; }
+
+
+void Dialog::on_buttonBox_accepted()
+{
+  kernel.clear();
+  kernel.resize(ui->matrix_spinBox_h->value());
+  // qInfo() << kernel.size();
+  for (int y = 0; y < ui->matrix_spinBox_h->value(); ++y) {
+    for (int x = 0; x < ui->matrix_spinBox_w->value(); ++x) {
+      kernel[y].push_back(qobject_cast<QDoubleSpinBox *>(ui->matrixWidget->cellWidget(y, x))->value());
+    }
   }
+  // for (int y = 0; y < kernel.size(); ++y) {
+  //   for (int x = 0; x < kernel[y].size(); ++x) {
+  //     qInfo() << kernel[y][x];
+  //   }
+  // }
+}
 
 } // namespace s21

@@ -16,12 +16,12 @@ static int Truncate(int i) {
 }
 
 QImage Filter::ResizeImg() {
-  QSize size(conv_.first / 2 * 2 + original_img_.width(), conv_.second / 2 * 2 + original_img_.height());
-  QImage ret_img(size, original_img_.format());
+  QSize size(conv_.first / 2 * 2 + filtered_img_.width(), conv_.second / 2 * 2 + filtered_img_.height());
+  QImage ret_img(size, filtered_img_.format());
   QColor color;
   for (int y = 0; y < ret_img.height(); y++) {
     for (int x = 0; x < ret_img.width(); x++) {
-      if ( (y < conv_.second / 2 || y >= ret_img.height() - conv_.second / 2 || x < conv_.first / 2 || x >= ret_img.width() - conv_.first / 2)) {
+      if (y < conv_.second / 2 || y >= ret_img.height() - conv_.second / 2 || x < conv_.first / 2 || x >= ret_img.width() - conv_.first / 2) {
         if (y < conv_.second / 2) {
           if (x <= conv_.first / 2) {
             color = filtered_img_.pixelColor(0, 0);
@@ -71,7 +71,7 @@ QImage Filter::ResizeImg() {
       ret_img.setPixelColor(x, y, color);
     }
   }
-  ret_img.save(QDir::homePath() + "/frame.png");
+  // ret_img.save(QDir::homePath() + "/frame.png");
   return ret_img;
 }
 
@@ -266,8 +266,9 @@ void Filter::Convolution(const std::vector<std::vector<float>> &kernel,
   float r, g, b;
   // for (int y = 0; y < img.height() - conv_.second + 1; ++y) {
   //   for (int x = 0; x < img.width() - conv_.first + 1; ++x) {
-  for (int y = 0; y < original_img_.height(); ++y) {
-    for (int x = 0; x < original_img_.width(); ++x) {
+  // tmp_img_ = filtered_img_;
+  for (int y = 0; y < filtered_img_.height(); ++y) {
+    for (int x = 0; x < filtered_img_.width(); ++x) {
       r = g = b = 0;
       for (int i = 0; i < conv_.second; ++i) {
         for (int j = 0; j < conv_.first; ++j) {
@@ -277,27 +278,72 @@ void Filter::Convolution(const std::vector<std::vector<float>> &kernel,
           b += color.blueF() * kernel[i][j];
         }
       }
-      // r = qBound(0.f, r, 1.f);
-      // g = qBound(0.f, g, 1.f);
-      // b = qBound(0.f, b, 1.f);
+      r = qBound(0.f, r, 1.f);
+      g = qBound(0.f, g, 1.f);
+      b = qBound(0.f, b, 1.f);
       tmp_img_.setPixelColor(x ,y, QColor::fromRgbF(r, g, b));
     }
   }
 }
 
-// void Filter::Emboss() {
-//   conv_.first = 3;
-//   conv_.second = 3;
-//   static std::vector<std::vector<float>> kernel {{-2.f, -1.f, 0.f}, {-1.f, 1.f, 1.f}, {0.f, 1.f, 2.f}};
-//   Convolution(kernel, ResizeImg());
+// void Filter::Convolution(const std::vector<std::vector<float>> &kernel, const QImage &img) {
+//   QColor color;
+//   QImage image(img);
+//   int R, G, B, X, Y;
+//   for (int i = 0; i < img.width(); ++i) {
+//     for (int j = 0; j < img.height(); ++j) {
+//       R = 0;
+//       G = 0;
+//       B = 0;
+//       for (int p = -conv_.second / 2; p <= conv_.second / 2; ++p) {
+//         for (int q = -conv_.first / 2; q <= conv_.first / 2; ++q) {
+//           if (((i + p) < 0) || ((i + p) >= img.width())) {
+//             X = i - p;
+//           } else {
+//             X = i + p;
+//           }
+//
+//           if (((j + q) < 0) || ((j + q) >= img.height())) {
+//             Y = j - q;
+//           } else {
+//             Y = j + q;
+//           }
+//
+//           color = img.pixelColor(X, Y);
+//
+//           R += static_cast<int>(color.red() * kernel[conv_.second / 2 + p][conv_.first / 2 + q]);
+//           G += static_cast<int>(color.green() * kernel[conv_.second / 2 + p][conv_.first / 2 + q]);
+//           B += static_cast<int>(color.blue() * kernel[conv_.second / 2 + p][conv_.first / 2 + q]);
+//         }
+//       }
+//       R = qBound(0, R, 255);
+//       G = qBound(0, G, 255);
+//       B = qBound(0, B, 255);
+//
+//       image.setPixel(i, j, qRgb(R, G, B));
+//     }
+//   }
+//   tmp_img_ = image;
+//   // return uimg;
 // }
 
+
 void Filter::Emboss() {
-  conv_.first = 2;
-  conv_.second = 2;
-  static std::vector<std::vector<float>> kernel {{1.f, 0.f}, {0.f, -1.f}};
+  conv_.first = 3;
+  conv_.second = 3;
+  static std::vector<std::vector<float>> kernel {{-2.f, -1.f, 0.f}, {-1.f, 1.f, 1.f}, {0.f, 1.f, 2.f}};
   Convolution(kernel, ResizeImg());
 }
+
+// void Filter::Emboss() {
+//   conv_.first = 2;
+//   conv_.second = 3;
+//   static std::vector<std::vector<float>> kernel {{-2.f, -1.f},
+//                                                  {-1.f, 1.f},
+//                                                  {0.f, 1.f}};
+//   qInfo() << "y = " << kernel.size() << " x = " << kernel[0].size();
+//   Convolution(kernel, ResizeImg());
+// }
 
 void Filter::Laplas() {
   conv_.first = 3;
@@ -364,6 +410,12 @@ void Filter::Prewitt() {
       tmp_img_.setPixelColor(x ,y, QColor::fromRgbF(rv, gv, bv));
     }
   }
+}
+
+void Filter::Custom(const std::vector<std::vector<float>> &kernel) {
+  conv_.first = kernel[0].size();
+  conv_.second = kernel.size();
+  Convolution(kernel, ResizeImg());
 }
 
 void Filter::SetOriginalImg(const QImage &original_img) {

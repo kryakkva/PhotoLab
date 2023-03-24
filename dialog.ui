@@ -63,10 +63,10 @@
     <number>0</number>
    </attribute>
   </widget>
-  <widget class="QSpinBox" name="matrix_spinBox">
+  <widget class="QSpinBox" name="matrix_spinBox_w">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>90</x>
      <y>570</y>
      <width>42</width>
      <height>22</height>
@@ -77,6 +77,54 @@
    </property>
    <property name="maximum">
     <number>16</number>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="matrix_spinBox_h">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>570</y>
+     <width>42</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>2</number>
+   </property>
+   <property name="maximum">
+    <number>16</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>27</x>
+     <y>572</y>
+     <width>58</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Weight:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>148</x>
+     <y>572</y>
+     <width>58</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>hight:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
  </widget>

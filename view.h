@@ -76,6 +76,7 @@ private:
   Ui::View *ui_;
   Controller *ctrl_;
   Filter model_;
+  Dialog custom_;
   bool just_set_ = false;
 };
 

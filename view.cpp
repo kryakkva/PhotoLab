@@ -34,7 +34,7 @@ void View::mouseReleaseEvent(QMouseEvent *event) {
         if (model_.GetOriginalImg() != model_.GetFilteredImg())
           ui_->orig_img_text->setText("Image after applying the filter");
         ui_->orig_label->setPixmap(QPixmap::fromImage(model_.GetFilteredImg().scaled(550, 450,
-                                                                                     Qt::KeepAspectRatio, Qt::FastTransformation)));
+                                                                                     Qt::KeepAspectRatio, Qt::SmoothTransformation)));
       }
     }
   }
@@ -84,7 +84,7 @@ void View::EnableElem() {
 
 void View::ShowOriginalImg() {
   ui_->orig_label->setPixmap(QPixmap::fromImage(model_.GetOriginalImg().scaled(550, 450,
-                                                                 Qt::KeepAspectRatio, Qt::FastTransformation)));
+                                                                 Qt::KeepAspectRatio, Qt::SmoothTransformation)));
   ui_->orig_label->setAlignment(Qt::AlignCenter);
 }
 
@@ -94,14 +94,14 @@ void View::ShowImg(Sender who) {
     case Sender::kApplyRst:
       img = model_.GetFilteredImg().scaled(550, 450,
                                            Qt::KeepAspectRatio,
-                                           Qt::FastTransformation);
+                                           Qt::SmoothTransformation);
       ui_->orig_label->setPixmap(QPixmap::fromImage(img));
       // ui_->orig_label->setAlignment(Qt::AlignCenter);
       break;
     default:
       img = model_.GetTmpImg().scaled(550, 450,
                                       Qt::KeepAspectRatio,
-                                      Qt::FastTransformation);
+                                      Qt::SmoothTransformation);
       break;
   }
   switch (who) {
@@ -345,8 +345,10 @@ void View::on_prewitt_fltr_btn_clicked()
 
 void View::on_cstm_krnl_btn_clicked()
 {
-  Dialog d;
-  d.exec();
+  if (custom_.exec()){
+    ctrl_->Custom(custom_.GetKernel());
+    ShowImg(Sender::kFilter);
+  }
 }
 
 } // namespace s21

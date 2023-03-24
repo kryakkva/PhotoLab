@@ -49,4 +49,5 @@ void Controller::GaussBlur() { model_->GaussBlur(); }
 void Controller::BoxBlur() { model_->BoxBlur(); }
 void Controller::Prewitt() { model_->Prewitt(); }
 void Controller::Laplas() { model_->Laplas(); }
+void Controller::Custom(const std::vector<std::vector<float>> &kernel) { model_->Custom(kernel); }
 } // s21

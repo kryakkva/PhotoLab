@@ -36,6 +36,7 @@ class Controller {
   void BoxBlur();
   void Prewitt();
   void Laplas();
+  void Custom(const std::vector<std::vector<float>> &kernel);
 
  private:
   Filter *model_;
