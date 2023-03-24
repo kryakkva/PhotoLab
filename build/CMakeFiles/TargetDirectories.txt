@@ -1,0 +1,8 @@
+/Users/yarik/MyProjects/PhotoLab/build/CMakeFiles/PhotoLab.dir
+/Users/yarik/MyProjects/PhotoLab/build/CMakeFiles/edit_cache.dir
+/Users/yarik/MyProjects/PhotoLab/build/CMakeFiles/rebuild_cache.dir
+/Users/yarik/MyProjects/PhotoLab/build/CMakeFiles/list_install_components.dir
+/Users/yarik/MyProjects/PhotoLab/build/CMakeFiles/install.dir
+/Users/yarik/MyProjects/PhotoLab/build/CMakeFiles/install/local.dir
+/Users/yarik/MyProjects/PhotoLab/build/CMakeFiles/install/strip.dir
+/Users/yarik/MyProjects/PhotoLab/build/CMakeFiles/PhotoLab_autogen.dir

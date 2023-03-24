@@ -1,0 +1,21 @@
+# ninja log v5
+353	1675	1679575791875580660	CMakeFiles/PhotoLab.dir/Filter.cpp.o	3b96b110467c9310
+55	1356	1679577652393115381	CMakeFiles/PhotoLab.dir/view.cpp.o	f19ccf7a06cac5bf
+353	1700	1679575791912610369	CMakeFiles/PhotoLab.dir/main.cpp.o	a5f1a40c74a39f6c
+45	696	1679566214778696607	CMakeFiles/PhotoLab.dir/Controller.cpp.o	5a4f654d4ebbc770
+1356	1546	1679577652586083921	PhotoLab.app/Contents/MacOS/PhotoLab	641a72a26ca0be15
+10	51	1679577651093237195	PhotoLab_autogen/mocs_compilation.cpp	e85db7ac887fc5ee
+352	1739	1679575791952335268	CMakeFiles/PhotoLab.dir/PhotoLab_autogen/mocs_compilation.cpp.o	bd9a90d2ec0ebd11
+10	51	1679577651093237195	PhotoLab_autogen/timestamp	e85db7ac887fc5ee
+55	1271	1679577652306404394	CMakeFiles/PhotoLab.dir/dialog.cpp.o	9c4f70f9cfacf4d1
+10	651	1679639049023307000	PhotoLab_autogen/timestamp	a0e4e6f72b1a4d15
+10	651	1679639049023307000	PhotoLab_autogen/mocs_compilation.cpp	a0e4e6f72b1a4d15
+10	651	1679639049023307000	/Users/yarik/MyProjects/PhotoLab — копия 2/cmake-build-debug/PhotoLab_autogen/timestamp	a0e4e6f72b1a4d15
+10	651	1679639049023307000	/Users/yarik/MyProjects/PhotoLab — копия 2/cmake-build-debug/PhotoLab_autogen/mocs_compilation.cpp	a0e4e6f72b1a4d15
+652	2146	1679639050518339307	CMakeFiles/PhotoLab.dir/Controller.cpp.o	d51f7b1d6627b4dd
+652	2231	1679639050605684842	CMakeFiles/PhotoLab.dir/Filter.cpp.o	3755135aa3b092c9
+651	2294	1679639050668049135	CMakeFiles/PhotoLab.dir/main.cpp.o	9e5c067d9c6e5e31
+652	2299	1679639050674024956	CMakeFiles/PhotoLab.dir/dialog.cpp.o	1e55ac6fb166d553
+651	2365	1679639050741214573	CMakeFiles/PhotoLab.dir/PhotoLab_autogen/mocs_compilation.cpp.o	ecdbd51e9cf3f221
+651	2440	1679639050816474882	CMakeFiles/PhotoLab.dir/view.cpp.o	82c17be382ea3378
+2440	2630	1679639051010215372	PhotoLab.app/Contents/MacOS/PhotoLab	641a72a26ca0be15
